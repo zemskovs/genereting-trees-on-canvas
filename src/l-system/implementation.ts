@@ -1,4 +1,6 @@
 import { SystemBuilder, SystemSettings } from './types';
+import { AppSettings } from "../settings";
+import { StartSelector } from "./types";
 
 export class Builder implements SystemBuilder {
   private state: SystemState = '';
@@ -20,5 +22,18 @@ export class Builder implements SystemBuilder {
       const addition = rules[character] ?? character;
       this.state += addition;
     }
+  }
+}
+
+export class StartPointSelector implements StartSelector {
+  constructor(private settings: AppSettings) {}
+
+  public selectStart(): Point {
+    const { width, height } = this.settings.canvasSize;
+
+    return {
+      x: Math.round(width / 2),
+      y: height,
+    };
   }
 }
