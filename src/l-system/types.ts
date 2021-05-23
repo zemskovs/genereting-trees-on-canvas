@@ -7,3 +7,7 @@ export type SystemSettings = {
 export interface SystemBuilder {
   build(settings: SystemSettings): Expression;
 }
+
+export interface StartSelector {
+  selectStart(): Point;
+}
